@@ -4,6 +4,70 @@ This is a guide on how to setup the entire fullstack flow of the NutsStorage con
 
 Let's explore the different Layers our system will be composed of.
 
+```mermaid
+
+graph TD
+    %% Main components with colors
+    style A fill:#f6d365,stroke:#e18f00,stroke-width:2px,color:#000
+    style B fill:#c3f584,stroke:#6abf4b,stroke-width:2px,color:#000
+    style C fill:#a0d2eb,stroke:#428bca,stroke-width:2px,color:#000
+    style D fill:#fddede,stroke:#e07a7a,stroke-width:2px,color:#000
+    style E fill:#dcd6f7,stroke:#9d8df1,stroke-width:2px,color:#000
+
+    A[Smart Contract Layer]
+    B[Backend API & Indexer]
+    C[Frontend - React]
+    D[CI/CD with GitHub Actions]
+    E[Docker + Compose]
+
+    %% Subgraph for Smart Contract Layer
+    subgraph A [Smart Contract Layer]
+        direction TB
+        A2[NUTSStorage.sol - Upgradeable & Pausable]
+        A3[Write Tests]
+        A4[Deploy contracts]
+    end
+
+    %% Subgraph for Backend API & Indexer
+    subgraph B [Backend API & Indexer]
+        direction TB
+        B1[Node.js + Express API]
+        B2[Ethers.js for web3 interaction]
+        B3[Store Events in MongoDB]
+    end
+
+    %% Subgraph for Frontend
+    subgraph C [Frontend - React]
+        direction TB
+        C1[React + Chakra UI]
+        C2[Wagmi + WalletConnect Integration]
+        C3[User Interactions: Update `important`]
+    end
+
+    %% Subgraph for CI/CD
+    subgraph D [CI/CD with GitHub Actions]
+        direction TB
+        D1[Smart Contract Tests]
+        D2[Backend & Frontend Tests]
+        D3[Build & Push Docker Images]
+    end
+
+    %% Subgraph for Docker + Compose
+    subgraph E [Docker + Compose]
+        direction TB
+        E1[Backend Container]
+        E2[Frontend Container - Nginx]
+        E3[MongoDB Container]
+    end
+
+    %% Integration flows
+    A --> B
+    B --> A
+    C --> B
+    C --> D
+    D --> E
+
+```
 ## 1. Smart Contract Layer
 
 ### Project Setup and Development  
