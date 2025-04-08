@@ -9,12 +9,12 @@ Let's explore the different Layers our system will be composed of.
 ### Project Setup and Development  
 - **Environment:**  
   • We use Foundry as our smart contracts development framework so feel free to install from here : [Foundry](https://book.getfoundry.sh/getting-started/installation).  
-  • Install OpenZeppelin dependencies so your contract inherits secure, audited functionality. Forge build will do that.
+  • Install OpenZeppelin dependencies like oz-contracts and oz upgradable contracts so our contract inherits secure, audited functionality. Forge build will do that.
 
 - **Contract Features:**  
   • The contract, `NutsStorage.sol`, is upgradeable (using the `UUPS` pattern), `PausableUpgradable`, and includes access control via `OwnableUpgradable`.  
   • It defines an `“important”` state variable and a mapping of `authorized users`.  
-  • Only the `owner` can `add authorized users`, and only those authorized users can update the state.  
+  • Only the `owner` can `add authorized users`, and only those authorized users can update the state of `important` variable.  
   • The contract includes an `initializer` function for `upgradeable` deployments, as well as pause and unpause functions to disable functionality in emergencies.  
   • The `_authorizeUpgrade` function restricts upgrades to the owner.
 
